@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Works | Prince Uche</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Blockchain Background Canvas (Full Page) -->
+  <canvas id="blockchainCanvas" class="blockchain-bg" aria-hidden="true"></canvas>
+
+  <!-- Global SVG gradient -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+    <defs>
+      <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#6366F1" />
+        <stop offset="100%" stop-color="#22D3EE" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Home">
+        <span class="logo-name"><img src="./pic/logo.png"></span><span class="logo-bracket"></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about"    class="nav-link">About</a>
+        <a href="index.html#skills"   class="nav-link">Skills</a>
+        <a href="index.html#projects" class="nav-link">Stack</a>
+        <a href="index.html#contact"  class="nav-link">Contact</a>
+        <a href="index.html#contact"  class="btn btn-primary btn-sm">Hire Me</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ======================== HERO (Works Page) ======================== -->
+  <section class="works-hero" aria-label="Works hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container works-hero-inner">
+      <div class="works-hero-content">
+        <h1 class="works-hero-title">
+          My <span class="gradient-text">Works</span>
+        </h1>
+        <p class="works-hero-subtitle">
+          A collection of projects I've built. From concept to production,
+          each showcasing innovation and technical excellence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+        <!-- ===== WORK: Business Landing Pages ===== -->
+        <article class="work-item" data-category="frontend">
+          <div class="work-image-frame">
+            <img class="frame-image" src="/work_img/justiceai.jpg" alt="Business Landing Pages project showcase">
+            <video class="frame-video" style="display:none;" autoplay muted loop>
+              <source src="/videos/justiceai.mp4" type="video/mp4">
+              Your browser doesn't support HTML5 video.
+            </video>
+            <div class="work-image-overlay">
+              <span class="work-category-badge frontend-work">Frontend</span>
+            </div>
+          </div>
+          
+          <div class="work-content">
+            <h3 class="work-title">FAQ AI model</h3>
+            
+            <div class="work-specs">
+              <div class="spec-item">
+                <span class="spec-label">Description</span>
+                <p class="spec-value">AI-powered FAQ system that provides accurate and context-aware responses to user queries, integrated with natural language processing for seamless interaction.</p>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Technologies</span>
+                <div class="work-tags">
+                  <span class="work-tag">HTML5</span>
+                  <span class="work-tag">CSS3</span>
+                  <span class="work-tag">JavaScript</span>
+                  <span class="work-tag">Responsive</span>
+                  <span class="work-tag">python</span>
+                </div>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Optimization</span>
+                <ul class="features-list">
+                  <li>Mobile-First Design</li>
+                  <li>Performance Optimization</li>
+                  <li>AI Automatching</li>
+                  <li>Smart messaging</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="work-footer">
+              <div class="work-actions">
+                <a href="#" class="work-link" aria-label="View source code">
+                  <span class="link-icon">&lt;/&gt;</span>
+                  <span class="link-text">Source Code</span>
+                </a>
+                <button type="button" class="work-link demo-toggle" aria-label="Toggle live demo video">
+                  <span class="link-icon">↗</span>
+                  <span class="link-text">Live Demo</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p class="footer-text">
+        <span class="font-mono text-accent">&lt;</span>PU<span class="font-mono text-accent">/&gt;</span>
+        &nbsp;&middot;&nbsp; &copy; 2026 Prince Uche. Built with passion.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // Works page specific functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const filters = document.querySelectorAll('.works-filter');
+      const items = document.querySelectorAll('.work-item');
+      const demoToggles = document.querySelectorAll('.demo-toggle');
+
+      // Video toggle functionality
+      demoToggles.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const frame = this.closest('.work-item').querySelector('.work-image-frame');
+          const image = frame.querySelector('.frame-image');
+          const video = frame.querySelector('.frame-video');
+          const overlay = frame.querySelector('.work-image-overlay');
+
+          if (video.style.display === 'none') {
+            // Show video
+            image.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+            if (overlay) overlay.style.display = 'none';
+            this.textContent = '';
+            this.innerHTML = '<span class="link-icon">✕</span><span class="link-text">Close Video</span>';
+          } else {
+            // Show image
+            video.style.display = 'none';
+            video.pause();
+            video.currentTime = 0;
+            image.style.display = 'block';
+            if (overlay) overlay.style.display = 'block';
+            this.textContent = '';
+            this.innerHTML = '<span class="link-icon">↗</span><span class="link-text">Live Demo</span>';
+          }
+        });
+      });
+
+      // Filter functionality
+      filters.forEach(filter => {
+        filter.addEventListener('click', function() {
+          const category = this.getAttribute('data-filter');
+          
+          // Update active filter
+          filters.forEach(f => f.classList.remove('active'));
+          this.classList.add('active');
+
+          // Filter items with animation
+          items.forEach(item => {
+            if (category === 'all' || item.getAttribute('data-category') === category) {
+              item.style.opacity = '0';
+              item.style.display = 'block';
+              setTimeout(() => {
+                item.style.transition = 'opacity 0.3s ease';
+                item.style.opacity = '1';
+              }, 10);
+            } else {
+              item.style.opacity = '0';
+              setTimeout(() => {
+                item.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // Hamburger menu
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+      const navLink = document.querySelectorAll('.nav-link');
+
+      hamburger?.addEventListener('click', function() {
+        navLinks?.classList.toggle('open');
+        this.setAttribute('aria-expanded', navLinks?.classList.contains('open'));
+      });
+
+      navLink.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks?.classList.remove('open');
+          hamburger?.setAttribute('aria-expanded', false);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
