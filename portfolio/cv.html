@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Uche - CV</title>
+    <style>
+        :root {
+            --sidebar-bg: #2c3e50;
+            --teal-accent: #3498db;
+            --text-gray: #ecf0f1;
+            --header-dark: #34495e;
+            --main-text: #2c3e50;
+            --secondary-text: #7f8c8d;
+            --border-color: #bdc3c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .cv-page {
+            width: 900px;
+            min-height: 1100px;
+            background: white;
+            display: flex;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* LEFT SIDEBAR */
+        .sidebar {
+            width: 35%;
+            background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--header-dark) 100%);
+            color: white;
+            padding: 50px 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .profile-container {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 4px solid var(--text-gray);
+            overflow: hidden;
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #34495e;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-container::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--teal-accent), transparent);
+            z-index: -1;
+        }
+
+        .profile-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .sidebar-section {
+            width: 100%;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar-header {
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border-bottom: 3px solid var(--teal-accent);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            color: white;
+            position: relative;
+        }
+
+        .sidebar-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--teal-accent);
+        }
+
+        .contact-item {
+            margin-bottom: 18px;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            word-break: break-all;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            transition: color 0.3s ease, transform 0.2s ease;
+            cursor: default;
+        }
+
+        .contact-item:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .contact-item a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--teal-accent);
+        }
+
+        .url-block {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            word-break: break-all;
+        }
+
+        .url-block:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--teal-accent);
+            transform: translateY(-2px);
+        }
+
+        .url-block a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+        }
+
+        .url-block a:hover {
+            color: white;
+        }
+
+        .contact-item::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            flex-shrink: 0;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+        }
+
+        .sidebar-section:nth-child(2) .contact-item:nth-child(1)::before {
+            content: '📧';
+            font-size: 16px;
+            background: none;
+        }
+
+        .sidebar-section:nth-child(2) .contact-item:nth-child(2)::before {
+            content: '📱';
+            font-size: 16px;
+            background: none;
+        }
+
+        .sidebar-section:nth-child(2) .contact-item:nth-child(3)::before {
+            content: '📍';
+            font-size: 16px;
+            background: none;
+        }
+
+        .sidebar-section:nth-child(3) .contact-item::before {
+            content: '🔗';
+            font-size: 16px;
+            background: none;
+        }
+
+        .sidebar-section:nth-child(4) .contact-item::before {
+            content: '🎓';
+            font-size: 16px;
+            background: none;
+        }
+
+        .sidebar-section:nth-child(5) .contact-item::before {
+            content: '🌐';
+            font-size: 16px;
+            background: none;
+        }
+
+        .education-item {
+            display: block;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--teal-accent);
+        }
+
+        .education-item::before {
+            content: '🎓';
+            font-size: 18px;
+            margin-right: 8px;
+            display: inline-block;
+        }
+
+        /* RIGHT CONTENT */
+        .main-content {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .teal-header {
+            background: linear-gradient(135deg, var(--teal-accent) 0%, #2980b9 100%);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            padding-left: 50px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .name-title h1 {
+            margin: 0;
+            color: white;
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .content-padding {
+            padding: 50px;
+            flex: 1;
+        }
+
+        .main-section {
+            margin-bottom: 40px;
+        }
+
+        .main-section h2 {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            color: var(--main-text);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--teal-accent);
+            padding-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .summary-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--secondary-text);
+            text-align: justify;
+            margin: 0;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            font-size: 0.9rem;
+        }
+
+        .skill-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--teal-accent);
+        }
+
+        .skill-item b {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--main-text);
+            font-weight: 600;
+        }
+
+        .experience-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid var(--teal-accent);
+        }
+
+        .exp-role {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--main-text);
+            margin-bottom: 5px;
+        }
+
+        .exp-meta {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        li {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--secondary-text);
+            line-height: 1.5;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: var(--teal-accent);
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .cv-page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                border-radius: 0;
+            }
+            .contact-item a:hover {
+                color: var(--text-gray);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cv-page {
+                flex-direction: column;
+                width: 100%;
+                min-height: auto;
+            }
+            .sidebar {
+                width: 100%;
+                padding: 30px 20px;
+            }
+            .main-content {
+                width: 100%;
+            }
+            .teal-header {
+                height: 120px;
+                padding-left: 30px;
+            }
+            .name-title h1 {
+                font-size: 2rem;
+            }
+            .content-padding {
+                padding: 30px 20px;
+            }
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cv-page">
+    <div class="sidebar">
+        <div class="profile-container">
+            <img src="/pic/profile-pic (1).png">
+        </div>
+
+        <div class="sidebar-section">
+            <div class="contact-item">@<br>akansoprince@gmail.com</div>
+            <div class="contact-item">📞<br>+2349163627736</div>
+            <div class="contact-item">📍<br>Lagos Nigeria</div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-header">Websites, Portfolios</div>
+            <div class="contact-item url-block"><a href="https://github.com/princeaka140">https://github.com/princeaka140</a></div>
+            <div class="contact-item url-block"><a href="https://huggingface.co/Princeaka">https://huggingface.co/Princeaka</a></div>
+            <div class="contact-item url-block"><a href="https://princeaka140.github.io/prince-portfolio/portfolio/">https://princeaka140.github.io/prince-portfolio/portfolio/</a></div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-header">Education</div>
+            <div class="contact-item education-item"><strong>Angel Beloved College</strong><br>Secondary Education</div>
+            <div class="contact-item education-item"><strong>Self-Directed Software Engineering Program</strong><br>Focus: Backend Systems (Primary), Full Stack Development, APIs, AI Applications, and Blockchain Technologies</div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-header">Languages</div>
+            <div class="contact-item">English (Fluent)</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="teal-header">
+            <div class="name-title">
+                <h1>Prince Uche</h1>
+            </div>
+        </div>
+
+        <div class="content-padding">
+            <section class="main-section">
+                <h2>Professional Summary</h2>
+                <p class="summary-text">
+                    Dynamic Software Developer with extensive full-stack expertise in creating scalable applications and AI-driven systems. Proficient in backend development, databases, and a diverse range of modern web technologies, demonstrating a comprehensive understanding of both frontend and backend requirements. Adept at navigating all phases of the development process while fostering collaboration within teams to achieve project goals. Bringing 4 years of relevant experience, complemented by strong technical skills and a commitment to delivering high-quality solutions.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h2>Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <b>Languages:</b> Python, Rust, JavaScript, PHP, HTML, CSS, SQL
+                    </div>
+                    <div class="skill-item">
+                        <b>Frameworks:</b> Node.js, Express.js, Fastify, React, FastAPI, Fastapp, Axum, Tokio
+                    </div>
+                    <div class="skill-item">
+                        <b>Databases:</b> MySQL, PostgreSQL, MongoDB, Redis, DragonflyDB, RocksDB
+                    </div>
+                    <div class="skill-item">
+                        <b>Tools:</b> Docker, VS Code
+                    </div>
+                    <div class="skill-item">
+                        <b>Other:</b> AI chatbot development, blockchain knowledge
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h2>Experience</h2>
+                <div class="experience-item">
+                    <div class="exp-role">Self-employed - Freelance & Personal Projects</div>
+                    <div class="exp-meta">Full Stack Developer, Remote</div>
+                    <ul>
+                        <li>Built full-stack applications independently from frontend to backend</li>
+                        <li>Developed APIs and integrated databases</li>
+                        <li>Managed development lifecycle and deployments</li>
+                        <li>Built AI-powered systems and tools</li>
+                        <li>Reviewed code, debugged problems, and corrected issues</li>
+                        <li>Developed unit test cases for testing and automation</li>
+                        <li>Used Node.JS, ORM and SQL/No-SQL to develop and manage databases</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
